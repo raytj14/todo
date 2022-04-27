@@ -3,35 +3,15 @@ from django.http.response import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views import View
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from .forms import SignupForm
 
-'''
-from .forms import LoginForm
-
-
-class LoginView(View):
-    def get(self, request, *args, **kwargs):
-        context = {
-            'form': LoginForm(),
-        }
-        return TemplateResponse(request, 'accounts/login.html', context)
+class SignupView(CreateView):
+    form_class = SignupForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
     
-    def  post(self, request, *args, **kwargs):
-        form = LoginForm(request.POST)
-        if not form.is_valid():
-            context = {
-                'form': form,
-            }
-            return TemplateResponse(request, 'accounts/login.html', context)
-        
-        user = form.get_user()
-
-        auth_login(request, user)
-
-        return HttpResponseRedirect(reverse('shop:index'))
-
-login = LoginView.as_View()
-'''
-
 class HelloView(View):
     def get(self, request, *args, **kwargs):
         context = {
