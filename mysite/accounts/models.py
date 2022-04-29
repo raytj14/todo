@@ -48,3 +48,12 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
     
     objects = CustomUserManager()
+
+    username = models.CharField(
+        'ユーザー名',
+        max_length=150,
+        blank=True,
+        null=True,
+        help_text="半角アルファベット、 半角数字、 @/./+/-/_ で 150文字以下にしてくださ  い  。  ",
+        validators=[AbstractUser.username_validator],
+    )
