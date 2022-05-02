@@ -10,4 +10,4 @@ class CBView(View):
 
     def post(self,request):
         params = {"message":"View function:Post process"}
-        return render(request,"task/index.html",params)       
+        return render(request,"task/index.html",params)  
